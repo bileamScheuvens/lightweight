@@ -1,0 +1,7 @@
+.vscode
+checkpoints/*.ckpt
+data/*.mat
+data/*.csv
+data/*.parquet
+wandb/
+__pycache__/

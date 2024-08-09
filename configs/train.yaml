@@ -1,0 +1,5 @@
+name: somerun
+parameters:
+  lr: 0.001
+  max_epochs: 10
+  accelerator: cpu
