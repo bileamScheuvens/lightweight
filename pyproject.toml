@@ -11,6 +11,8 @@ lightning = "^2.3.3"
 scipy = "^1.14.0"
 wandb = "^0.17.5"
 scikit-learn = "^1.5.1"
+pytest = "^8.3.2"
+pytorch-lightning = "^2.4"
 
 
 [tool.poetry.scripts]
