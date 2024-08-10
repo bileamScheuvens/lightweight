@@ -9,13 +9,25 @@ early_terminate:
   min_iter: 3
   eta: 3
 parameters:
-  lr: 
-    values: [0.001, 0.0001]
-  num_layers:
-    distribution: int_uniform
-    min: 1
-    max: 2
-  max_epochs:
-    value: 2
-  accelerator: 
-    value: gpu
+  trainer:
+    accelerator: { value: gpu }
+    max_epochs: { value: 2 }
+
+  callback:
+    name: { value: "default"}
+
+  model:
+    name: { value: "random" }
+    lr: { values: [0.001, 0.0001] }
+    num_layers:
+      distribution: int_uniform
+      min: 1
+      max: 3
+
+  datamodule:
+    name: { value: "default"}
+    batch_size: { value: 32 }
+    val_split: { value: 0.2 }
+    test_split: { value: 0.1 }
+
+    dataset: { values: {}}
