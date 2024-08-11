@@ -1,20 +1,24 @@
-from lightweight.models.model import RandomModel
-from lightweight.callbacks.callback import CustomCallback
-from lightweight.data.datamodule import CustomDataModule
+import os
+from importlib import import_module
 
 
-
+# lookup of name to location and class name
 DISPATCH_COMPONENTS = {
-    "models": {
-        "random": RandomModel
+    "model": {
+        "random": ["models", "RandomModel"]
     },
-    "datamodules": {
-        "default": CustomDataModule
+    "datamodule": {
+        "default": ["data", "CustomDataModule"]
     },
-    "callbacks": {
-        "default": CustomCallback
+    "callback": {
+        "default": ["callbacks", "CustomCallback"]
     }
 }
 def dispatch_component(component, config, *args, **kwargs):
     assert component in DISPATCH_COMPONENTS.keys(), f"Invalid component type {component}"
-    return DISPATCH_COMPONENTS[component][config[component]["name"]](**config[component], *args, **kwargs)
+    config = config[component]
+    com_module, com_class = DISPATCH_COMPONENTS[component][config["name"]]
+    # lazy import
+    import_path = f"{os.path.basename(os.path.dirname(__file__))}.{com_module}" 
+    component = getattr(import_module(import_path), com_class) 
+    return component(*args, **config, **kwargs)

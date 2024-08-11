@@ -3,7 +3,7 @@ import torch
 
 class RandomModel(pl.LightningModule):
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super().__init__()
         self.total_bias = torch.nn.Parameter(torch.tensor(0.0))
 

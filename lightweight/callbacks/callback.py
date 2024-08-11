@@ -1,7 +1,7 @@
 import pytorch_lightning as pl
 
 class CustomCallback(pl.Callback):
-    def __init__(self, wandb_run, plot_val_preds=False, discount_fp=False) -> None:
+    def __init__(self, wandb_run=None, *args, **kwargs) -> None:
         super().__init__()
         self.run = wandb_run
         self._empty_cache = {
@@ -9,8 +9,6 @@ class CustomCallback(pl.Callback):
         }
         self.train_cache = self._empty_cache.copy()
         self.val_cache = self._empty_cache.copy()
-        self.plot_val_preds = plot_val_preds
-        self.discount_fp = discount_fp
 
 
     def on_train_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):

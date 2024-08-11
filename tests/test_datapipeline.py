@@ -1,8 +1,7 @@
 import pytest
 
-from lightweight.dispatcher import dispatch_component, DISPATCH_COMPONENTS
+from lightweight.dispatcher import dispatch_component
 
-@pytest.mark.parametrize("dataloader", DISPATCH_COMPONENTS["datamodules"].keys())
-def test_dataloader(dataloader):
-    dataloader = dispatch_component("dataloader", dataloader)
+def test_datamodule(config):
+    datamodule = dispatch_component("datamodule", config) 
     # TODO: test functionality

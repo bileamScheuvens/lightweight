@@ -4,7 +4,7 @@ parameters:
     max_epochs: 10
 
   callback:
-    name: { value: "default"}
+    name: "default" 
 
   model:
     name: "random"
@@ -12,7 +12,7 @@ parameters:
     num_layers: 2
 
   datamodule:
-    name: { value: "default"}
+    name: "default"
     batch_size: 32
     val_split: 0.2
     test_split: 0.1

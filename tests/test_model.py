@@ -1,8 +1,7 @@
 import pytest
 
-from lightweight.dispatcher import dispatch_component, DISPATCH_COMPONENTS
+from lightweight.dispatcher import dispatch_component
 
-@pytest.mark.parametrize("model", DISPATCH_COMPONENTS["models"].keys())
-def test_model(model):
-    model = dispatch_component("model", model)
+def test_model(config):
+    model = dispatch_component("model", config)
     # TODO: test functionality
